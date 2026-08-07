@@ -1,6 +1,6 @@
 import { redirect } from "next/navigation";
-import { WORKERS } from "../../../lib/data";
 
+// Worker id 1 is Marcus Johnson in the seed data — first contact by default.
 export default function ChatsIndexPage() {
-  redirect(`/chats/${WORKERS[0].id}`);
+  redirect("/chats/1");
 }
