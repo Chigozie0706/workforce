@@ -27,3 +27,12 @@ const port = process.env.PORT ?? 4000;
 app.listen(port, () => {
   console.log(`SkillConnect backend listening on http://localhost:${port}`);
 });
+
+const allowedOrigins = (process.env.CORS_ORIGIN ?? "http://localhost:3000")
+  .split(",")
+  .map(o => o.trim());
+
+app.use(cors({
+  origin: allowedOrigins,
+  credentials: true,
+}));
