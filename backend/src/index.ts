@@ -9,8 +9,12 @@ import { conversationsRouter } from "./routes/conversations";
 
 const app = express();
 
+const allowedOrigins = (process.env.CORS_ORIGIN ?? "http://localhost:3000")
+  .split(",")
+  .map(o => o.trim());
+
 app.use(cors({
-  origin: process.env.CORS_ORIGIN ?? "http://localhost:3000",
+  origin: allowedOrigins,
   credentials: true,
 }));
 app.use(cookieParser());
@@ -27,12 +31,3 @@ const port = process.env.PORT ?? 4000;
 app.listen(port, () => {
   console.log(`SkillConnect backend listening on http://localhost:${port}`);
 });
-
-const allowedOrigins = (process.env.CORS_ORIGIN ?? "http://localhost:3000")
-  .split(",")
-  .map(o => o.trim());
-
-app.use(cors({
-  origin: allowedOrigins,
-  credentials: true,
-}));
